@@ -20,7 +20,7 @@
 		<anypoint.password>Cashedge12$</anypoint.password>
 		<env>Sandbox</env>
 		<business>Delivery Champ</business>
-		<appname>delivery-champ-banking-core1-eapi</appname>
+		<appname>delivery-champ-banking-core-eapi</appname>
 	</properties>
 
 	<build>
