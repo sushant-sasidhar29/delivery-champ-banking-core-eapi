@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="itemGroups-papi-request" format="json">
+      <types:shape format="weave" example="examples/PostItemGroupsRQ.json"><![CDATA[%dw 2.0
+
+type itemGroups_papi_request = Array<{|  id: Number {"typeId": "int"},   name: String,   description: String,   parentId: Number {"typeId": "int"}|}> {"example": "[{\\\"id\\\":1,\\\"name\\\":\\\"Drinks\\\",\\\"description\\\":\\\"Soft Drinks\\\",\\\"parentId\\\":2}]"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="itemGroups-request" format="json">
+      <types:shape format="weave" example="examples/post_itemgroups_application_json-1.json"><![CDATA[%dw 2.0
+
+type itemGroups_request = {|
+  itemGroups: Array<{|    id: Number {"typeId": "int"},     name: String,     description: String,     parentId: Number {"typeId": "int"}  |}>
+|} {"example": "{\\\"itemGroups\\\":[{\\\"id\\\":1,\\\"name\\\":\\\"Drinks\\\",\\\"description\\\":\\\"Soft Drinks\\\",\\\"parentId\\\":2}]}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="businessUnits-request" format="json">
+      <types:shape format="weave" example="examples/post_businessunits_application_json.json"><![CDATA[%dw 2.0
+
+type businessUnits_request = {|
+  businessUnits: Array<{|    businessUnitId: String,     businessUnitName: String,     typeCode: Number {"typeId": "int"},     parentBusinessUnitGroupId: Number {"typeId": "int"},     operatorId: Number {"typeId": "int"},     templateId: Number {"typeId": "int"},     statusId: Number {"typeId": "int"},     addressDetails: {|      streetTypeId: Number {"typeId": "int"},       postBoxCode: String,       houseNumber: String,       street: String,       postalCode: String,       city: String,       territory: String,       countryCode: String,       country: String,       location: {|        latitude: Number {"typeId": "double"},         longitude: Number {"typeId": "double"}      |}    |},     contactDetails: {|      phone: String,       fax: String,       mobile: String,       email: String,       information: String    |}  |}>
+|} {"example": "{\\\"businessUnits\\\":[{\\\"businessUnitId\\\":\\\"NR4311\\\",\\\"businessUnitName\\\":\\\"North Road Sation\\\",\\\"typeCode\\\":2,\\\"parentBusinessUnitGroupId\\\":1,\\\"operatorId\\\":789,\\\"templateId\\\":1,\\\"statusId\\\":1,\\\"addressDetails\\\":{\\\"streetTypeId\\\":1,\\\"postBoxCode\\\":\\\"A123\\\",\\\"houseNumber\\\":\\\"17\\\",\\\"street\\\":\\\"DETMERSTRASSE\\\",\\\"postalCode\\\":\\\"546783\\\",\\\"city\\\":\\\"Hamburg\\\",\\\"territory\\\":\\\"Hamburg\\\",\\\"countryCode\\\":\\\"DE\\\",\\\"country\\\":\\\"Germany\\\",\\\"location\\\":{\\\"latitude\\\":10.055923199844386,\\\"longitude\\\":53.591420631946484}},\\\"contactDetails\\\":{\\\"phone\\\":\\\"0049 456781\\\",\\\"fax\\\":\\\"0049 456781\\\",\\\"mobile\\\":\\\"+30507777777\\\",\\\"email\\\":\\\"sample@dnmail.com\\\",\\\"information\\\":\\\"Comments\\\"}}]}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="businessUnits-papi-request" format="json">
+      <types:shape format="weave" example="examples/PostBusinessUnitsRQ.json"><![CDATA[%dw 2.0
+
+type businessUnits_papi_request = Array<{|  id: String,   name: String,   typeId: Number {"typeId": "int"},   parentBusinessUnitGroupId: Number {"typeId": "int"},   operatorId: Number {"typeId": "int"},   templateId: Number {"typeId": "int"},   statusId: Number {"typeId": "int"},   addressDetails: {|    streetTypeId: Number {"typeId": "int"},     postBoxCode: String,     houseNumber: String,     street: String,     postalCode: String,     city: String,     territory: String,     countryCode: String,     country: String,     location: {|      latitude: Number {"typeId": "double"},       longitude: Number {"typeId": "double"}    |}  |},   contactDetails: {|    phone: String,     fax: String,     mobile: String,     email: String,     information: String  |}|}> {"example": "[{\\\"businessUnitId\\\":\\\"NR4311\\\",\\\"businessUnitName\\\":\\\"North Road Sation\\\",\\\"typeCode\\\":2,\\\"parentBusinessUnitGroupId\\\":1,\\\"operatorId\\\":789,\\\"templateId\\\":1,\\\"statusId\\\":1,\\\"addressDetails\\\":{\\\"streetTypeId\\\":1,\\\"postBoxCode\\\":\\\"A123\\\",\\\"houseNumber\\\":\\\"17\\\",\\\"street\\\":\\\"DETMERSTRASSE\\\",\\\"postalCode\\\":\\\"546783\\\",\\\"city\\\":\\\"Hamburg\\\",\\\"territory\\\":\\\"Hamburg\\\",\\\"countryCode\\\":\\\"DE\\\",\\\"country\\\":\\\"Germany\\\",\\\"location\\\":{\\\"latitude\\\":10.055923199844386,\\\"longitude\\\":53.591420631946484}},\\\"contactDetails\\\":{\\\"phone\\\":\\\"0049 456781\\\",\\\"fax\\\":\\\"0049 456781\\\",\\\"mobile\\\":\\\"+30507777777\\\",\\\"email\\\":\\\"sample@dnmail.com\\\",\\\"information\\\":\\\"Comments\\\"}}]"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="departments-request" format="json">
+      <types:shape format="weave" example="examples/post_departments_application_json.json"><![CDATA[%dw 2.0
+
+type departments_request = {|
+  departments: Array<{|    id: Number {"typeId": "int"},     name: String,     parentId: Number {"typeId": "int"},     description: String,     additionalInfo: {|      statusId: Number {"typeId": "int"},       typeId: Number {"typeId": "int"},       orderingInfo: {|        orderingMethodTypeId: Number {"typeId": "int"},         safeStockDays: Number {"typeId": "double"},         maxStockDays: Number {"typeId": "double"},         numberOfDeliveries: Number {"typeId": "double"},         completePackageThreshold: Number {"typeId": "int"}      |},       loyalty: {|        isLoyaltyEnabled: Boolean,         loyaltyTariffCode: String,         loyaltyValue: Number {"typeId": "int"}      |},       salesRestrictions: {|        minimumCustomerAge: Number {"typeId": "int"},         timeGroupId: Number {"typeId": "int"}      |},       stockOwnership: {|        ownerTypeId: Number {"typeId": "int"},         itemSettlementTypeId: Number {"typeId": "int"},         stockOwnerId: Number {"typeId": "int"}      |},       pricePolicy: {|        marginTypeId: Number {"typeId": "int"},         marginValue: Number {"typeId": "double"},         costTypeId: Number {"typeId": "int"},         costValue: Number {"typeId": "int"},         isDiscountAllowed: Boolean,         isPriceOverrideAllowed: Boolean      |},       otherAttributes: {|        eFTRestrictionId: Number {"typeId": "int"},         financialGroupId: Number {"typeId": "int"},         outFinancialGroupId: Number {"typeId": "int"},         outEFTRestrictionId: Number {"typeId": "int"},         isOutdoorSalesAllowed: Boolean,         outTaxRuleId: Number {"typeId": "int"},         taxRuleId: Number {"typeId": "int"}      |}    |}  |}>
+|} {"example": "{\\\"departments\\\":[{\\\"id\\\":2,\\\"name\\\":\\\"Fuel\\\",\\\"parentId\\\":1,\\\"description\\\":\\\"Fuel\\\",\\\"additionalInfo\\\":{\\\"statusId\\\":1,\\\"typeId\\\":1,\\\"orderingInfo\\\":{\\\"orderingMethodTypeId\\\":2,\\\"safeStockDays\\\":111.0,\\\"maxStockDays\\\":333.0,\\\"numberOfDeliveries\\\":0.0,\\\"completePackageThreshold\\\":222},\\\"loyalty\\\":{\\\"isLoyaltyEnabled\\\":true,\\\"loyaltyTariffCode\\\":\\\"55555\\\",\\\"loyaltyValue\\\":44},\\\"salesRestrictions\\\":{\\\"minimumCustomerAge\\\":16,\\\"timeGroupId\\\":30011},\\\"stockOwnership\\\":{\\\"ownerTypeId\\\":2,\\\"itemSettlementTypeId\\\":0,\\\"stockOwnerId\\\":102171},\\\"pricePolicy\\\":{\\\"marginTypeId\\\":1,\\\"marginValue\\\":111.0,\\\"costTypeId\\\":2,\\\"costValue\\\":222,\\\"isDiscountAllowed\\\":false,\\\"isPriceOverrideAllowed\\\":false},\\\"otherAttributes\\\":{\\\"eFTRestrictionId\\\":299,\\\"financialGroupId\\\":295,\\\"outFinancialGroupId\\\":30148,\\\"outEFTRestrictionId\\\":30056,\\\"isOutdoorSalesAllowed\\\":false,\\\"outTaxRuleId\\\":434,\\\"taxRuleId\\\":435}}}]}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="departments-papi-request" format="json">
+      <types:shape format="weave" example="examples/PostDepartmentsRQ.json"><![CDATA[%dw 2.0
+
+type departments_papi_request = Array<{|  id: Number {"typeId": "int"},   name: String,   parentId: Number {"typeId": "int"},   description: String,   additionalInfo: {|    statusId: Number {"typeId": "int"},     typeId: Number {"typeId": "int"},     orderingInfo: {|      orderingMethodTypeId: Number {"typeId": "int"},       safeStockDays: Number {"typeId": "int"},       maxStockDays: Number {"typeId": "int"},       numberOfDeliveries: Number {"typeId": "int"},       completePackageThreshold: Number {"typeId": "int"}    |},     loyalty: {|      isLoyaltyEnabled: Boolean,       loyaltyTariffCode: String,       loyaltyValue: Number {"typeId": "int"}    |},     salesRestrictions: {|      minimumCustomerAge: Number {"typeId": "int"},       timeGroupId: Number {"typeId": "int"}    |},     stockOwnership: {|      ownerTypeId: Number {"typeId": "int"},       itemSettlementTypeId: Number {"typeId": "int"},       stockOwnerId: Number {"typeId": "int"}    |},     pricePolicy: {|      marginTypeId: Number {"typeId": "int"},       marginValue: Number {"typeId": "int"},       costTypeId: Number {"typeId": "int"},       costValue: Number {"typeId": "int"},       isDiscountAllowed: Boolean,       isPriceOverrideAllowed: Boolean    |},     otherAttributes: {|      eFTRestrictionId: Number {"typeId": "int"},       financialGroupId: Number {"typeId": "int"},       outFinancialGroupId: Number {"typeId": "int"},       outEFTRestrictionId: Number {"typeId": "int"},       isOutdoorSalesAllowed: Boolean,       outTaxRuleId: Number {"typeId": "int"},       taxRuleId: Number {"typeId": "int"}    |}  |}|}> {"example": "[{\\\"id\\\":2,\\\"name\\\":\\\"Fuel\\\",\\\"parentId\\\":1,\\\"description\\\":\\\"Fuel\\\",\\\"additionalInfo\\\":{\\\"statusId\\\":1,\\\"typeId\\\":1,\\\"orderingInfo\\\":{\\\"orderingMethodTypeId\\\":2,\\\"safeStockDays\\\":111,\\\"maxStockDays\\\":333,\\\"numberOfDeliveries\\\":0,\\\"completePackageThreshold\\\":222},\\\"loyalty\\\":{\\\"isLoyaltyEnabled\\\":true,\\\"loyaltyTariffCode\\\":\\\"55555\\\",\\\"loyaltyValue\\\":44},\\\"salesRestrictions\\\":{\\\"minimumCustomerAge\\\":16,\\\"timeGroupId\\\":30011},\\\"stockOwnership\\\":{\\\"ownerTypeId\\\":2,\\\"itemSettlementTypeId\\\":0,\\\"stockOwnerId\\\":102171},\\\"pricePolicy\\\":{\\\"marginTypeId\\\":1,\\\"marginValue\\\":111,\\\"costTypeId\\\":2,\\\"costValue\\\":222,\\\"isDiscountAllowed\\\":false,\\\"isPriceOverrideAllowed\\\":false},\\\"otherAttributes\\\":{\\\"eFTRestrictionId\\\":299,\\\"financialGroupId\\\":295,\\\"outFinancialGroupId\\\":30148,\\\"outEFTRestrictionId\\\":30056,\\\"isOutdoorSalesAllowed\\\":false,\\\"outTaxRuleId\\\":434,\\\"taxRuleId\\\":435}}}]"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="shopItems-request" format="json">
+      <types:shape format="weave" example="examples/post_shopitems_application_json.json"><![CDATA[%dw 2.0
+
+type shopItems_request = {|
+  shopItems: Array<{|    itemName: String,     itemDescription: String,     itemId: Number {"typeId": "int"},     itemTypeCode: Number {"typeId": "int"},     units: Number {"typeId": "int"},     contentUnitOfMeasureCode: String,     unitOfMeasureCode: String,     isWeigthedItem: Boolean,     isPrintShelfLabel: Boolean,     manufacturerId: Number {"typeId": "int"},     isPosItemUnitsAllowed: Boolean,     isPosItemPriceAllowed: Boolean,     inventoryAccountingMethodCode: Number {"typeId": "int"},     departmentId: Number {"typeId": "int"},     itemGroupId: Number {"typeId": "int"},     brandId: Number {"typeId": "int"},     productionTypeId: Number {"typeId": "int"},     productDescription: String,     nutritionDescription: String,     operationalUnitId: Number {"typeId": "int"},     posItems: Array<{|      itemName: String,       itemDescription: String,       posItemId: String,       qualifier: Number {"typeId": "int"},       isLocked: Boolean,       isSaleAllowed: Boolean,       isPrintShelfLabel: Boolean,       units: Number {"typeId": "int"},       unitOfMeasureCode: String,       barcodeTypeId: Number {"typeId": "int"},       unitPrices: Array<{|        unitPriceTypeId: Number {"typeId": "int"},         unitListPrice: Number {"typeId": "int"}      |}>, 
+      linkedDeposits: Array<{|        depositQuantity: Number {"typeId": "int"},         posItemId: String      |}>
+    |}>, 
+    salesRestrictions: {|
+      timeGroupId: Number {"typeId": "int"}, 
+      minimumCustomerAge: Number {"typeId": "int"}
+    |}, 
+    pricePolicy: {|
+      marginTypeId: Number {"typeId": "int"}, 
+      marginValue: Number {"typeId": "double"}, 
+      isPriceOverrideAllowed: Boolean, 
+      isDiscountAllowed: Boolean
+    |}, 
+    otherAttributes: {|
+      financialGroupId: Number {"typeId": "int"}, 
+      outFinancialGroupId: Number {"typeId": "int"}, 
+      eFTRestrictionId: Number {"typeId": "int"}, 
+      outEFTRestrictionId: Number {"typeId": "int"}, 
+      taxRuleID: Number {"typeId": "int"}, 
+      outTaxRuleId: Number {"typeId": "int"}, 
+      isOutdoorSalesAllowed: Boolean
+    |}, 
+    itemState: {|
+      statusId: Number {"typeId": "int"}, 
+      isLocked: Boolean
+    |}
+  |}>
+|} {"example": "{\\\"shopItems\\\":[{\\\"itemName\\\":\\\"CARLSBERG 1883\\\",\\\"itemDescription\\\":\\\"CARLSBERG 1883 6-PAK 0,33 L\\\",\\\"itemId\\\":1113653,\\\"itemTypeCode\\\":1,\\\"units\\\":1,\\\"contentUnitOfMeasureCode\\\":\\\"LT\\\",\\\"unitOfMeasureCode\\\":\\\"PC\\\",\\\"isWeigthedItem\\\":false,\\\"isPrintShelfLabel\\\":true,\\\"manufacturerId\\\":101,\\\"isPosItemUnitsAllowed\\\":true,\\\"isPosItemPriceAllowed\\\":false,\\\"inventoryAccountingMethodCode\\\":0,\\\"departmentId\\\":107576,\\\"itemGroupId\\\":107581,\\\"brandId\\\":0,\\\"productionTypeId\\\":0,\\\"productDescription\\\":\\\"null\\\",\\\"nutritionDescription\\\":\\\"null\\\",\\\"operationalUnitId\\\":0,\\\"posItems\\\":[{\\\"itemName\\\":\\\"CARLSBERG 1883\\\",\\\"itemDescription\\\":\\\"CARLSBERG 1883 6-PAK 0,33 L\\\",\\\"posItemId\\\":\\\"5740700987175\\\",\\\"qualifier\\\":1,\\\"isLocked\\\":false,\\\"isSaleAllowed\\\":false,\\\"isPrintShelfLabel\\\":true,\\\"units\\\":1,\\\"unitOfMeasureCode\\\":\\\"107584\\\",\\\"barcodeTypeId\\\":2,\\\"unitPrices\\\":[{\\\"unitPriceTypeId\\\":1,\\\"unitListPrice\\\":49},{\\\"unitPriceTypeId\\\":2,\\\"unitListPrice\\\":0}],\\\"linkedDeposits\\\":[{\\\"depositQuantity\\\":4,\\\"posItemId\\\":\\\"107514\\\"},{\\\"depositQuantity\\\":1,\\\"posItemId\\\":\\\"107516\\\"}]},{\\\"itemName\\\":\\\"CARLSBERG 1883\\\",\\\"itemDescription\\\":\\\"CARLSBERG 1883 6-PAK 0,33 L\\\",\\\"posItemId\\\":\\\"5740600983208\\\",\\\"qualifier\\\":1,\\\"isLocked\\\":false,\\\"isSaleAllowed\\\":false,\\\"isPrintShelfLabel\\\":true,\\\"units\\\":4,\\\"unitOfMeasureCode\\\":\\\"PC\\\",\\\"barcodeTypeId\\\":2,\\\"unitPrices\\\":[{\\\"unitPriceTypeId\\\":1,\\\"unitListPrice\\\":49},{\\\"unitPriceTypeId\\\":2,\\\"unitListPrice\\\":0}]},{\\\"itemName\\\":\\\"CARLSBERG 1883\\\",\\\"itemDescription\\\":\\\"CARLSBERG 1883 6-PAK 0,33 L\\\",\\\"posItemId\\\":\\\"5740603976993\\\",\\\"qualifier\\\":1,\\\"isLocked\\\":false,\\\"isSaleAllowed\\\":false,\\\"isPrintShelfLabel\\\":true,\\\"units\\\":120,\\\"unitOfMeasureCode\\\":\\\"PC\\\",\\\"barcodeTypeId\\\":2,\\\"unitPrices\\\":[{\\\"unitPriceTypeId\\\":1,\\\"unitListPrice\\\":49.5},{\\\"unitPriceTypeId\\\":2,\\\"unitListPrice\\\":50.5}]}],\\\"salesRestrictions\\\":{\\\"timeGroupId\\\":100760,\\\"minimumCustomerAge\\\":0},\\\"pricePolicy\\\":{\\\"marginTypeId\\\":2,\\\"marginValue\\\":8.49,\\\"isPriceOverrideAllowed\\\":false,\\\"isDiscountAllowed\\\":false},\\\"otherAttributes\\\":{\\\"financialGroupId\\\":298,\\\"outFinancialGroupId\\\":298,\\\"eFTRestrictionId\\\":298,\\\"outEFTRestrictionId\\\":298,\\\"taxRuleID\\\":5,\\\"outTaxRuleId\\\":0,\\\"isOutdoorSalesAllowed\\\":false},\\\"itemState\\\":{\\\"statusId\\\":1,\\\"isLocked\\\":false}},{\\\"itemName\\\":\\\"CARLSBERG 1883\\\",\\\"itemDescription\\\":\\\"CARLSBERG 1883 6-PAK 0,33 L\\\",\\\"itemId\\\":1113653,\\\"itemTypeCode\\\":1,\\\"units\\\":1.98,\\\"contentUnitOfMeasureCode\\\":\\\"LT\\\",\\\"unitOfMeasureCode\\\":\\\"PC\\\",\\\"isWeigthedItem\\\":false,\\\"isPrintShelfLabel\\\":true,\\\"manufacturerId\\\":101,\\\"isPosItemUnitsAllowed\\\":true,\\\"isPosItemPriceAllowed\\\":false,\\\"inventoryAccountingMethodCode\\\":0,\\\"departmentId\\\":107576,\\\"itemGroupId\\\":107581,\\\"brandId\\\":0,\\\"productionTypeId\\\":0,\\\"productDescription\\\":\\\"null\\\",\\\"nutritionDescription\\\":\\\"null\\\",\\\"operationalUnitId\\\":0,\\\"posItems\\\":[{\\\"itemName\\\":\\\"CARLSBERG 1883\\\",\\\"itemDescription\\\":\\\"CARLSBERG 1883 6-PAK 0,33 L\\\",\\\"posItemId\\\":\\\"5740700987175\\\",\\\"qualifier\\\":1,\\\"isLocked\\\":false,\\\"isSaleAllowed\\\":false,\\\"isPrintShelfLabel\\\":true,\\\"units\\\":1,\\\"unitOfMeasureCode\\\":\\\"PC\\\",\\\"barcodeTypeId\\\":2,\\\"unitPrices\\\":[{\\\"unitPriceTypeId\\\":1,\\\"unitListPrice\\\":49},{\\\"unitPriceTypeId\\\":2,\\\"unitListPrice\\\":0}],\\\"linkedDeposits\\\":[{\\\"depositQuantity\\\":4,\\\"posItemId\\\":\\\"107514\\\"},{\\\"depositQuantity\\\":1,\\\"posItemId\\\":\\\"107516\\\"}]},{\\\"itemName\\\":\\\"CARLSBERG 1883\\\",\\\"itemDescription\\\":\\\"CARLSBERG 1883 6-PAK 0,33 L\\\",\\\"posItemId\\\":\\\"5740600983208\\\",\\\"qualifier\\\":1,\\\"isLocked\\\":false,\\\"isSaleAllowed\\\":false,\\\"isPrintShelfLabel\\\":true,\\\"units\\\":4,\\\"unitOfMeasureCode\\\":\\\"PC\\\",\\\"barcodeTypeId\\\":2,\\\"unitPrices\\\":[{\\\"unitPriceTypeId\\\":1,\\\"unitListPrice\\\":49},{\\\"unitPriceTypeId\\\":2,\\\"unitListPrice\\\":0}]},{\\\"itemName\\\":\\\"CARLSBERG 1883\\\",\\\"itemDescription\\\":\\\"CARLSBERG 1883 6-PAK 0,33 L\\\",\\\"posItemId\\\":\\\"5740603976993\\\",\\\"qualifier\\\":1,\\\"isLocked\\\":false,\\\"isSaleAllowed\\\":false,\\\"isPrintShelfLabel\\\":true,\\\"units\\\":120,\\\"unitOfMeasureCode\\\":\\\"PC\\\",\\\"barcodeTypeId\\\":2,\\\"unitPrices\\\":[{\\\"unitPriceTypeId\\\":1,\\\"unitListPrice\\\":49.5},{\\\"unitPriceTypeId\\\":2,\\\"unitListPrice\\\":50.5}]}],\\\"salesRestrictions\\\":{\\\"timeGroupId\\\":100760,\\\"minimumCustomerAge\\\":0},\\\"pricePolicy\\\":{\\\"marginTypeId\\\":2,\\\"marginValue\\\":8.49,\\\"isPriceOverrideAllowed\\\":false,\\\"isDiscountAllowed\\\":false},\\\"otherAttributes\\\":{\\\"financialGroupId\\\":298,\\\"outFinancialGroupId\\\":298,\\\"eFTRestrictionId\\\":298,\\\"outEFTRestrictionId\\\":298,\\\"taxRuleID\\\":5,\\\"outTaxRuleId\\\":0,\\\"isOutdoorSalesAllowed\\\":false},\\\"itemState\\\":{\\\"statusId\\\":1,\\\"isLocked\\\":false}}]}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="shopItems-papi-request" format="json">
+      <types:shape format="weave" example="examples/PostShopItemsRQ.json"><![CDATA[%dw 2.0
+
+type shopItems_papi_request = Array<{|  itemName: String,   itemDescription: String,   itemId: Number {"typeId": "int"},   itemTypeCode: Number {"typeId": "int"},   units: Number {"typeId": "int"},   contentUnitOfMeasureCode: String,   unitOfMeasureCode: String,   isWeigthedItem: Boolean,   isPrintShelfLabel: Boolean,   manufacturerId: Number {"typeId": "int"},   isPosItemUnitsAllowed: Boolean,   isPosItemPriceAllowed: Boolean,   inventoryAccountingMethodCode: Number {"typeId": "int"},   departmentId: Number {"typeId": "int"},   itemGroupId: Number {"typeId": "int"},   brandId: Number {"typeId": "int"},   productionTypeId: Number {"typeId": "int"},   productDescription: String,   nutritionDescription: String,   operationalUnitId: Number {"typeId": "int"},   posItems: Array<{|    itemName: String,     itemDescription: String,     posItemId: String,     qualifier: Number {"typeId": "int"},     isLocked: Boolean,     isSaleAllowed: Boolean,     isPrintShelfLabel: Boolean,     units: Number {"typeId": "int"},     unitOfMeasureCode: String,     barcodeTypeId: Number {"typeId": "int"},     unitPrices: Array<{|      unitPriceTypeId: Number {"typeId": "int"},       unitListPrice: Number {"typeId": "int"}    |}>, 
+    linkedDeposits: Array<{|      depositQuantity: Number {"typeId": "int"},       posItemId: String    |}>
+  |}>, 
+  salesRestrictions: {|
+    timeGroupId: Number {"typeId": "int"}, 
+    minimumCustomerAge: Number {"typeId": "int"}
+  |}, 
+  pricePolicy: {|
+    marginTypeId: Number {"typeId": "int"}, 
+    marginValue: Number {"typeId": "double"}, 
+    isPriceOverrideAllowed: Boolean, 
+    isDiscountAllowed: Boolean
+  |}, 
+  otherAttributes: {|
+    financialGroupId: Number {"typeId": "int"}, 
+    outFinancialGroupId: Number {"typeId": "int"}, 
+    eFTRestrictionId: Number {"typeId": "int"}, 
+    outEFTRestrictionId: Number {"typeId": "int"}, 
+    taxRuleID: Number {"typeId": "int"}, 
+    outTaxRuleId: Number {"typeId": "int"}, 
+    isOutdoorSalesAllowed: Boolean
+  |}, 
+  itemState: {|
+    statusId: Number {"typeId": "int"}, 
+    isLocked: Boolean
+  |}
+|}> {"example": "[{\\\"itemName\\\":\\\"CARLSBERG 1883\\\",\\\"itemDescription\\\":\\\"CARLSBERG 1883 6-PAK 0,33 L\\\",\\\"itemId\\\":1113653,\\\"itemTypeCode\\\":1,\\\"units\\\":1,\\\"contentUnitOfMeasureCode\\\":\\\"LT\\\",\\\"unitOfMeasureCode\\\":\\\"PC\\\",\\\"isWeigthedItem\\\":false,\\\"isPrintShelfLabel\\\":true,\\\"manufacturerId\\\":101,\\\"isPosItemUnitsAllowed\\\":true,\\\"isPosItemPriceAllowed\\\":false,\\\"inventoryAccountingMethodCode\\\":0,\\\"departmentId\\\":107576,\\\"itemGroupId\\\":107581,\\\"brandId\\\":0,\\\"productionTypeId\\\":0,\\\"productDescription\\\":\\\"null\\\",\\\"nutritionDescription\\\":\\\"null\\\",\\\"operationalUnitId\\\":0,\\\"posItems\\\":[{\\\"itemName\\\":\\\"CARLSBERG 1883\\\",\\\"itemDescription\\\":\\\"CARLSBERG 1883 6-PAK 0,33 L\\\",\\\"posItemId\\\":\\\"5740700987175\\\",\\\"qualifier\\\":1,\\\"isLocked\\\":false,\\\"isSaleAllowed\\\":false,\\\"isPrintShelfLabel\\\":true,\\\"units\\\":1,\\\"unitOfMeasureCode\\\":\\\"107584\\\",\\\"barcodeTypeId\\\":2,\\\"unitPrices\\\":[{\\\"unitPriceTypeId\\\":1,\\\"unitListPrice\\\":49},{\\\"unitPriceTypeId\\\":2,\\\"unitListPrice\\\":0}],\\\"linkedDeposits\\\":[{\\\"depositQuantity\\\":4,\\\"posItemId\\\":\\\"107514\\\"},{\\\"depositQuantity\\\":1,\\\"posItemId\\\":\\\"107516\\\"}]},{\\\"itemName\\\":\\\"CARLSBERG 1883\\\",\\\"itemDescription\\\":\\\"CARLSBERG 1883 6-PAK 0,33 L\\\",\\\"posItemId\\\":\\\"5740600983208\\\",\\\"qualifier\\\":1,\\\"isLocked\\\":false,\\\"isSaleAllowed\\\":false,\\\"isPrintShelfLabel\\\":true,\\\"units\\\":4,\\\"unitOfMeasureCode\\\":\\\"PC\\\",\\\"barcodeTypeId\\\":2,\\\"unitPrices\\\":[{\\\"unitPriceTypeId\\\":1,\\\"unitListPrice\\\":49},{\\\"unitPriceTypeId\\\":2,\\\"unitListPrice\\\":0}]},{\\\"itemName\\\":\\\"CARLSBERG 1883\\\",\\\"itemDescription\\\":\\\"CARLSBERG 1883 6-PAK 0,33 L\\\",\\\"posItemId\\\":\\\"5740603976993\\\",\\\"qualifier\\\":1,\\\"isLocked\\\":false,\\\"isSaleAllowed\\\":false,\\\"isPrintShelfLabel\\\":true,\\\"units\\\":120,\\\"unitOfMeasureCode\\\":\\\"PC\\\",\\\"barcodeTypeId\\\":2,\\\"unitPrices\\\":[{\\\"unitPriceTypeId\\\":1,\\\"unitListPrice\\\":49.5},{\\\"unitPriceTypeId\\\":2,\\\"unitListPrice\\\":50.5}]}],\\\"salesRestrictions\\\":{\\\"timeGroupId\\\":100760,\\\"minimumCustomerAge\\\":0},\\\"pricePolicy\\\":{\\\"marginTypeId\\\":2,\\\"marginValue\\\":8.49,\\\"isPriceOverrideAllowed\\\":false,\\\"isDiscountAllowed\\\":false},\\\"otherAttributes\\\":{\\\"financialGroupId\\\":298,\\\"outFinancialGroupId\\\":298,\\\"eFTRestrictionId\\\":298,\\\"outEFTRestrictionId\\\":298,\\\"taxRuleID\\\":5,\\\"outTaxRuleId\\\":0,\\\"isOutdoorSalesAllowed\\\":false},\\\"itemState\\\":{\\\"statusId\\\":1,\\\"isLocked\\\":false}}]"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#b12dd121-e8c9-43a8-b429-17bb3bc976ab">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="itemGroups-request"/>
+        </types:message>
+      </types:input-event>
+      <types:output-event>
+        <types:message>
+          <types:payload type="itemGroups-papi-request"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#1936fc14-1817-41cd-bba2-2c582a010109">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="businessUnits-request"/>
+        </types:message>
+      </types:input-event>
+      <types:output-event>
+        <types:message>
+          <types:payload type="businessUnits-papi-request"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#09d3b516-9527-4702-b2d6-a93767cd82c6"/>
+</types:mule>

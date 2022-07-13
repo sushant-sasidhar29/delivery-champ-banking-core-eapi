@@ -1,0 +1,46 @@
+https:
+  port: "8082"
+  path: "/api/*"
+  
+errorCodes:
+  connectivity: "DN_CONNECTION_ERROR"
+  badrequest: "DN_BAD_REQUEST_ERROR"
+  unknown: "DN_INTERNAL_SERVER_ERROR"
+  notfound: "DN_NOT_FOUND_ERROR" 
+  
+delivery-champ-banking-core-papi:
+  #host: "localhost"
+  #port: "8082" 
+  host: "delivery-champ-banking-core-papi.us-w1.cloudhub.io"
+  port: "443"
+  protocol: "HTTPS"
+  clientId: "12"
+  clientSecret: "1233"
+  accountlist:
+    path: "/api/accountList"
+    responseTimeout: "30000"
+  debit:
+    path: "/api/debit"
+    responseTimeout: "30000"  
+  credit:
+    path: "/api/credit"
+    responseTimeout: "30000"  
+  consumerIdentify:
+    path: "/api/consumerIdentify"
+    responseTimeout: "30000"
+
+#Log related properties
+api:
+  name: "delivery-champ-banking-core-eapi"
+  id: "123456"
+  version: "v1"
+  logCategory: "com.delivery.champ.banking.core.eapi"
+  tenantPrefix: "Tenant."
+  keyStore:
+    alias: "mule"
+    algorithm: "RSA"
+    keyPassword: "Key@Dieb0ld"
+    storePassword: "Store@Dieb0ld"
+  jsonLogger:
+    disableFields: ""
+    maskFields: "client_secret,password"
