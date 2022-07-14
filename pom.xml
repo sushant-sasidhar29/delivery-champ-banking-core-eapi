@@ -18,7 +18,7 @@
 		<mule.version>4.4.0</mule.version>
 		<anypoint.username>sushant_psl</anypoint.username>
 		<anypoint.password>Cashedge12$</anypoint.password>
-		<env>SANDBOX</env>
+		<env>Sandbox</env>
 		<business>Delivery Champ</business>
 		<appname>delivery-champ-banking-core-eapi</appname>
 	</properties>
